@@ -34,14 +34,19 @@ export default {
   page: 1,
 
   async fetchPhoto(query) {
-    const autKey = '21724467-4ce0638ba06e77e7c079dfe7e';
-    const paramSearch = `?image_type=photo&orientation=horizontal&q=${this.query}&page=${this.page}&per_page=12&key=${autKey}`;
-
-    const response = await fetch(url + paramSearch);
-    const photo = await response.json();
-    this.page += 1;
-
-    return photo.hits;
+    try {
+      const autKey = '21724467-4ce0638ba06e77e7c079dfe7e';
+      const paramSearch = `?image_type=photo&orientation=horizontal&q=${this.query}&page=${this.page}&per_page=12&key=${autKey}`;
+  
+      const response = await fetch(url + paramSearch);
+      const photo = await response.json();
+      this.page += 1;
+  
+      return photo.hits;
+    } catch (error) {
+      console.log(error);
+    }
+   
   },
   resetPage() {
     this.page = 1;
