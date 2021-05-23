@@ -1,4 +1,5 @@
-import ApiService from './js/apiService';
+// import ApiService from './js/apiService';
+import API from './js/apiService';
 import photoCards from './templates/photo-card';
 import './sass/main.scss';
 
@@ -9,7 +10,7 @@ const refs = {
     showMoreBtn: document.querySelector('.show-more-button'),
 }
 
-const apiService = new ApiService ();
+// const apiService = new ApiService ();
 
 refs.searchForm.addEventListener('submit', onSearch);
 refs.showMoreBtn.addEventListener('click', onLoadMore);
@@ -20,14 +21,14 @@ function onSearch (e) {
     e.preventDefault();
 
 clearContainer ()
-    apiService.query = e.currentTarget.elements.query.value;
-    apiService.resetPage();
-    apiService.fetchPhoto().then(addGallery);
+API.query = e.currentTarget.elements.query.value;
+API.resetPage();
+API.fetchPhoto().then(addGallery);
 
 }
 
 function onLoadMore () {
-    apiService.fetchPhoto().then(addGallery);
+    API.fetchPhoto().then(addGallery);
 }
 
 function addGallery (hits) {
